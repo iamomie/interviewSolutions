@@ -1,2 +1,3 @@
 # interviewSolutions
-Solutions for algorithm interview questions
+
+# anagram: determine if two strings are anagrams of each other.
