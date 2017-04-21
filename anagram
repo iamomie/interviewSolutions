@@ -1,0 +1,25 @@
+
+        public static bool isAnagram(string one, string two)
+        {
+            if (one.Length != two.Length)
+                return false;
+
+            int result = 0;
+
+            for(int i = 0; i< one.Length; i++)
+            {
+                result = result ^ one[i];              
+            }
+
+            for(int j =0; j< two.Length; j++)
+            {
+                result = result ^ two[j];
+            }
+
+            if(result !=0)
+            {
+                return false;
+            }
+
+            return true;
+        }
