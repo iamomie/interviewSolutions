@@ -1,0 +1,136 @@
+        public static int TestBracketsSolutionOne(string S)
+        {
+            Stack<char> brackets = new Stack<char>();
+
+            foreach (char symbol in S)
+            {
+                if (symbol == '[' || symbol == '{' || symbol == '(')
+                {
+                    brackets.Push(symbol);
+                }
+
+                else
+                {
+                    if (brackets.Count == 0)
+                        return 0;
+
+                    var last = brackets.Pop();
+                    if (!isValidPair(last, symbol))
+                    {
+                        return 0;
+                    }
+                }
+            }
+
+            if (brackets.Count != 0)
+            {
+                return 0;
+            }
+
+            return 1;
+        }
+        
+        
+        public static bool isValidPair(char left, char right)
+        {
+            if (left == '(' && right == ')')
+            return true;
+
+            if (left == '[' && right == ']')
+                return true;
+
+            if (left == '{' && right == '}')
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+
+        public static int TestBracketsSolutionTwo(string sentence)
+        {
+            Stack<char> brackets = new Stack<char>();
+            char[] bracket1 = new char[] { '{', '}'};            
+            
+            foreach(char s in sentence)
+            {
+                switch(s)
+                {
+                    // push the opens
+                    case '{':
+                        brackets.Push(s);
+                        break;
+
+                    case '(':
+                        brackets.Push(s);
+                        break;
+
+                    case '[':
+                        brackets.Push(s);
+                        break;
+
+                     // pop the closes
+                    case '}':
+                        if(brackets.Count!=0)
+                        {
+                            if(brackets.Peek() == '{')
+                            {
+                                brackets.Pop();
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                        break;
+
+                    case ')':
+                        if (brackets.Count != 0)
+                        {
+                            if(brackets.Peek() == '(')
+                            {
+                                brackets.Pop();
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                        break;
+
+                    case ']':
+                        if (brackets.Count != 0)
+                        {
+                            if(brackets.Peek() == '[')
+                            {
+                                brackets.Pop();
+                            }
+                            else
+                            {
+                                return 0;
+                            }
+                        }
+                        else
+                        {
+                            return 0;
+                        }
+                        break;
+
+
+                    default:
+                        break;
+                }
+            }      
+
+            return 1;
+        }
